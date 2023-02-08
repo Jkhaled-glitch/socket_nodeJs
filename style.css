@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    list-style: none;
+    display: flexbox;
+}
+
+#messages{
+    width: 100%;
+    margin-top: 20px;
+}
+li{
+    height:30px;
+    display:flex;
+    align-items: center;
+    padding-left: 20px;
+}
+ul :nth-child(even){
+    background-color: #eee;
+    color: black
+    
+}
+ul :nth-child(odd){
+    background-color: black;
+    color:white;
+}
+.saisie{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+input{
+    width: 90%;
+    height:40px;
+    border:2px solid black;
+    border-radius: 10px;
+}
+button{
+background-color: red;
+color:white;
+height:40px;
+width:max-content;
+border-radius: 10px;
+margin-left: 5px;
+}

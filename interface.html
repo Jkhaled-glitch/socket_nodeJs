@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO chat</title>
+    
+    <style>
+    *{
+        margin: 0;
+        list-style: none;
+        display: flexbox;
+    }
+    
+    #messages{
+        width: 100%;
+        margin-top: 20px;
+    }
+    li{
+        height:30px;
+        display:flex;
+        align-items: center;
+        padding-left: 20px;
+    }
+    ul :nth-child(even){
+        background-color: #eee;
+        color: black
+        
+    }
+    ul :nth-child(odd){
+        background-color: black;
+        color:white;
+    }
+    .saisie{
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+    }
+    input{
+        width: 90%;
+        height:40px;
+        border:2px solid black;
+        border-radius: 10px;
+        margin-left: 10px;
+    }
+    button{
+    background-color: red;
+    color:white;
+    height:40px;
+    width:max-content;
+    border-radius: 10px;
+    margin-left: 5px;
+    }
+    </style>
+    
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+       // var io = require("socket.io")()
+        var socket = io();
+        const send=()=>{
+            let msg = document.getElementById("m").value
+            socket.emit('chat message',msg)
+        }
+        const receive = (msg)=>{
+            const li = document.createElement('li')
+            li.innerText= msg
+            document.getElementById('messages').appendChild(li)
+        }
+        socket.on('chat message',receive)
+    </script>
+    <div>
+        <ul id="messages">
+
+        </ul>
+        <div class="saisie">
+        <input id="m">
+         <button onclick="send()">Send</button>
+        </div>
+    </div>
+    
+</body>
+</html>
